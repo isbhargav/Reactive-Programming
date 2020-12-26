@@ -1,0 +1,15 @@
+{
+  "name": "Reactive-Programming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test-ex1": "mocha __tests__/ex-1.js",
+    "test-ex2": "mocha __tests__/ex-2.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "rxjs": "^6.6.3"
+  }
+}
