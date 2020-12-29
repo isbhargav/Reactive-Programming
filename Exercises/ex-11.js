@@ -1,11 +1,4 @@
-// Querying Trees
-
-// Sometimes, in addition to flat arrays, we need to query trees.
-// Trees pose a challenge because we need to flatten them into arrays in order
-// to apply filter() and map() operations on them.In this section we'll define a concatAll() function
-// that we can combine with map() and filter() to query trees.
-
-// Exercise 10: Use the concatAll to flatten higher-order observable
+// Exercise 11: Use concatMap() from Rxjs to project and flatten the movieLists into an array of video ids
 
 const { from } = require("rxjs");
 const { filter, map, concatAll, concatMap } = require("rxjs/operators");
@@ -59,11 +52,10 @@ function PrintAll() {
   //------------------------------------- Your Code Goes over here  ----------------------------------
   const allVideoIdsInMovieLists = [];
 
-  const obs$ = from(movieLists).pipe(
-    map((list) => from(list.videos).pipe(map((video) => video.id))),
-    concatAll()
-  );
-  obs$.subscribe((x) => allVideoIdsInMovieLists.push(x));
+  //  You can use concatMap which is equvalent of Map and then concatAll for higher orger observable
+
+  const obs2$ = from(movieLists).pipe(concatMap((list) => from(list.videos).pipe(map((video) => video.id))));
+  obs2$.subscribe((x) => allVideoIdsInMovieLists.push(x));
 
   console.log(allVideoIdsInMovieLists);
 
