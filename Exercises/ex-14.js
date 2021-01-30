@@ -1,12 +1,8 @@
-// Exercise 12: Retrieve id, title, and a 150x200 box art url for every video
+// Exercise 14: Retrieve id, title, and a 150x200 box art url for every video with concatMap()
 
-// You've managed to flatten a tree that's two levels deep, let's try for three!
-// Let's say that instead of a single boxart url on each video, we had a collection of boxart objects,
-// each with a different size and url.Create a query that selects { id, title, boxart } for every video in the movieLists.
-// This time though, the boxart property in the result will be the url of the boxart object with dimensions of 150x200px.
-// Let's see if you can solve this problem with map(), concatAll(), and filter().
-
-// There's just more one thing: you can't use indexers. In other words, this is illegal:
+// Nearly every time we flatten a tree we chain map() and concatAll().
+// Sometimes, if we're dealing with a tree several levels deep, we'll repeat this combination many times in our code.
+// To save on typing, let's create a concatMap function that's just a map operation, followed by a concatAll.
 
 const { from } = require("rxjs");
 const { filter, map, concatAll, concatMap } = require("rxjs/operators");
@@ -74,23 +70,18 @@ function PrintAll() {
   const allVideoIdsInMovieLists = [];
 
   //  You can use concatMap which is equvalent of Map and then concatAll for higher orger observable
-  // concatAll shoud be at same level as  map that returns another observable
-
   const obs$ = from(movieLists).pipe(
-    map((list) =>
+    concatMap((list) =>
       from(list.videos).pipe(
-        map((video) =>
+        concatMap((video) =>
           from(video.boxarts).pipe(
             filter((boxart) => boxart.height === 200 && boxart.width === 150),
             map((boxart) => ({ id: video.id, title: video.title, boxart }))
           )
-        ),
-        concatAll()
+        )
       )
-    ),
-    concatAll()
+    )
   );
-
   obs$.subscribe((x) => allVideoIdsInMovieLists.push(x));
 
   console.log(allVideoIdsInMovieLists);
