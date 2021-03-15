@@ -1,5 +1,7 @@
 import Page1 from "./Pages/Page1";
 import Page2 from "./Pages/Page2";
+import Page3 from "./Pages/Page3";
+
 import Home from "./Pages/Home";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 function App() {
@@ -14,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/1" component={Page1} />
           <Route exact path="/2" component={Page2} />
+          <Route exact path="/3" component={Page3} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Router>

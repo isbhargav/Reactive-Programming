@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import { BehaviorSubject, from } from "rxjs";
+import { BehaviorSubject  } from "rxjs";
 import { useObservable } from "../Hooks/useObservable";
 import { searchName } from "../searchNameApi";
 import {
-  concatMap,
   debounceTime,
   distinctUntilChanged,
-  filter,
-  mergeMap,
-  scan,
 } from "rxjs/operators";
 const searchSubject = new BehaviorSubject("");
 const searchResultObservable = searchSubject.pipe(

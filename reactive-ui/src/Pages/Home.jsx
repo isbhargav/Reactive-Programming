@@ -6,6 +6,7 @@ export default function Home(params) {
       <div className=" flex flex-col mx-32 mt-10 ">
         <Link to="/1">Auto Suggestion</Link>
         <Link to="/2">Auto Suggestion 2</Link>
+        <Link to="/3">Drag and Drop</Link>
       </div>
     </>
   );
