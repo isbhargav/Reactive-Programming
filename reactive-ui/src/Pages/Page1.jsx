@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { BehaviorSubject  } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { useObservable } from "../Hooks/useObservable";
 import { searchName } from "../searchNameApi";
-import {
-  debounceTime,
-  distinctUntilChanged,
-} from "rxjs/operators";
-const searchSubject = new BehaviorSubject("");
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+const searchSubject = new Subject();
 const searchResultObservable = searchSubject.pipe(
   debounceTime(600),
   // filter((s) => s.length > 1),
@@ -55,12 +52,12 @@ export default function Page1(params) {
           Submit
         </button>
         {/* <div>{JSON.stringify(data, null, 2)}</div> */}
-        <div>
+        <div className="ml-10 p-2">
           {display.length === 0 ? (
             <p>No Results</p>
           ) : (
             display.map((name) => (
-              <p className="text-sm text-gray-800" key={name}>
+              <p className="text-lg text-gray-800 m-2" key={name}>
                 {name}
               </p>
             ))
