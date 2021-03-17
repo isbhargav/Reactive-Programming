@@ -1,11 +1,11 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { BehaviorSubject, from } from "rxjs";
-import { searchName } from "../searchNameApi";
+import { searchName } from "../MockAPIs/searchNameApi";
 import { useObservable } from "../Hooks/useObservable";
-import {  debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 const searchSubject = new BehaviorSubject("");
 const searchResultObservable = searchSubject.pipe(
-  debounceTime(600),
+  debounceTime(400),
   // filter((s) => s.length > 1),
   distinctUntilChanged(),
   // scan((acc, curr) => [...acc, curr], ""),,

@@ -1,7 +1,14 @@
 import { fromEvent, BehaviorSubject } from "rxjs";
-import { switchMap, takeUntil, skip, map, delay } from "rxjs/operators";
+import {
+  // switchMap,
+  takeUntil,
+  skip,
+  map,
+  delay,
+  exhaustMap,
+} from "rxjs/operators";
 import { useObservable } from "../Hooks/useObservable";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const down = new BehaviorSubject("");
 const move = fromEvent(document, "mousemove");
@@ -16,7 +23,7 @@ const up = fromEvent(document, "mouseup");
 */
 const dragObserver = down.pipe(
   skip(1),
-  switchMap((d) => move.pipe(delay(250), takeUntil(up))),
+  exhaustMap((d) => move.pipe(delay(250), takeUntil(up))),
   map(({ clientX, clientY }) => ({
     clientX,
     clientY,
