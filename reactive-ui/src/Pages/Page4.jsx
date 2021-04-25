@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { EMPTY, from, Subject } from "rxjs";
 import {
+  debounceTime,
   groupBy,
   ignoreElements,
   mergeMap,
@@ -16,7 +17,12 @@ const databaseUpdateObserver = databaseCallStream.pipe(
     (m) => m,
     (group$) => group$.pipe(timeoutWith(2000, EMPTY), ignoreElements()) // <- This is how to terminate group stream after timeout
   ),
-  mergeMap(($group) => $group.pipe(switchMap((m) => from(dbUpdate(m)))))
+  mergeMap(($group) =>
+    $group.pipe(
+      debounceTime(400),
+      switchMap((m) => from(dbUpdate(m)))
+    )
+  )
 );
 
 /*
