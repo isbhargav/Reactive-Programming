@@ -17,6 +17,9 @@ export default function Home(params) {
           <li>
             <Link to="/4">Twitter like/unlike</Link>
           </li>
+          <li>
+            <Link to="/5">Button Clicks</Link>
+          </li>
         </ul>
       </div>
     </>
