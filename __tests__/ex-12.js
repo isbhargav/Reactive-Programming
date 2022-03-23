@@ -13,7 +13,7 @@ const { expect } = require("chai");
 const { from, zip, of } = require("rxjs");
 const { filter, concatMap, pluck, tap, map, take, reduce, concatAll, first } = require("rxjs/operators");
 
-describe("Multi Dimensional",
+describe("Multi Dimensional",()=>{
   it("Flattening", () => {
 
     const movieLists = [
@@ -153,4 +153,5 @@ describe("Multi Dimensional",
 
 
 
-  }));
+  })
+});

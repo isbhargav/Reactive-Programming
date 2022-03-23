@@ -1,4 +1,5 @@
-// Exercise 11: Use concatMap() from Rxjs to project and flatten the movieLists into an array of video ids
+// Exercise 11: Use concatMap() from Rxjs to project and flatten the movieLists
+// into an array of video ids
 
 const { from } = require("rxjs");
 const { filter, map, concatAll, concatMap } = require("rxjs/operators");
@@ -54,9 +55,12 @@ function PrintAll() {
 
   //  You can use concatMap which is equvalent of Map and then concatAll for higher orger observable
 
-  const obs2$ = from(movieLists).pipe(concatMap((list) => from(list.videos).pipe(map((video) => video.id))));
-  obs2$.subscribe((x) => allVideoIdsInMovieLists.push(x));
-
+   const obs$ = from(movieLists).pipe(
+      concatMap(({ videos }) => videos),
+      pluck('id'),
+    )
+  const obs2$ = from(movieLists).pipe(concatMap((generList) => from(generList.videos).pipe(map((video) => video.id))));
+  obs$.subscribe((x) => allVideoIdsInMovieLists.push(x));
   console.log(allVideoIdsInMovieLists);
 
   //---------------------------------------------End of Code -------------------------------------------

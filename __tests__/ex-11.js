@@ -7,7 +7,7 @@ const { expect } = require("chai");
 const { from } = require("rxjs");
 const { filter, concatMap, pluck, tap } = require("rxjs/operators");
 
-describe("Multi Dimensional",
+describe("Multi Dimensional",()=>{
   it("Flattening", () => {
     const movieLists = [
       {
@@ -73,5 +73,5 @@ describe("Multi Dimensional",
     expect(allVideoIdsInMovieLists).to.eql(result, "Arrays does not macth")
 
     //---------------------------------------------End of Code -------------------------------------------
-    return allVideoIdsInMovieLists;
-  }));
+  })
+});
