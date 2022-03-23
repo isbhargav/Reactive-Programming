@@ -4,15 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "npx mocha __tests__/*",
+    "test": "npx jest --watch  __tests__/*",
     "test-ex1": "mocha __tests__/ex-1.js",
     "test-ex2": "mocha __tests__/ex-2.js",
     "test-ex3": "mocha __tests__/ex-3.js",
     "test-ex4": "mocha __tests__/ex-4.js"
   },
   "dependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^8.2.1",
-    "rxjs": "^6.6.3"
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
+    "rxjs": "^7.5.5"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
